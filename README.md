@@ -63,10 +63,10 @@ sudo bash scripts/de_thuy.sh
 Nếu cần tạo phân vùng mới cho `/home`, thay `/dev/sdb1` bằng phân vùng thực tế của máy cuối kỳ:
 
 ```bash
-sudo HOME_DEVICE=/dev/sdb1 CONFIRM_FORMAT_HOME_DEVICE=yes bash scripts/de_thuy.sh
+sudo HOME_DEVICE=/dev/sdb1 bash scripts/de_thuy.sh
 ```
 
-Nếu máy chưa có công cụ quota, script sẽ tự kiểm tra và cài gói cần thiết bằng trình quản lý gói hiện có.
+Nếu máy chưa có công cụ quota và có `apt-get`, script sẽ cài gói `quota`.
 
 ## Kiểm thử
 
