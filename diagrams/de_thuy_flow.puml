@@ -1,0 +1,25 @@
+@startuml
+title Quy trinh lam De cua Thuy
+
+start
+:Kiem tra /home co la mount point rieng;
+if (/home chua la mount point?) then (co)
+  :Tao phan vung;
+  :Dinh dang ext4;
+  :Mount vao /home;
+else (khong)
+  :Ghi nhan trang thai /home;
+endif
+:Tao nhom hocvien va admin;
+:Tao user hv1, hv2, hv3, admin1, admin2;
+:Cap nhat mo ta cho admin1 va admin2;
+:Bat quota tren /home;
+:Dat quota 10 KB cho hocvien;
+:Dat quota 20 KB cho admin;
+:Dat thoi gian canh bao mot tuan;
+:Thu ghi du lieu vuot quota;
+:Dat umask 027 va so sanh quyen;
+:Thong ke tai nguyen theo user;
+stop
+
+@enduml
