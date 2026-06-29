@@ -15,11 +15,6 @@
 ```text
 .
 ├── README.md
-├── assets/
-│   ├── code-de-thuy.png
-│   └── diagram-de-thuy.png
-├── diagrams/
-│   └── de_thuy_flow.puml
 ├── scripts/
 │   └── de_thuy.sh
 └── tests/
@@ -178,11 +173,3 @@ ps -eo user,pid,%cpu,%mem,comm --sort=user | head -50
 du -sh /home/* 2>/dev/null
 repquota /home
 ```
-
-## Sơ đồ xử lý
-
-![Sơ đồ xử lý Đề của Thùy](assets/diagram-de-thuy.png)
-
-## Ảnh chụp mã nguồn
-
-![Ảnh chụp mã nguồn Đề của Thùy](assets/code-de-thuy.png)
