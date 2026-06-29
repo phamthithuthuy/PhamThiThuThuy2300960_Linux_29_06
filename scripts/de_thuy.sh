@@ -25,6 +25,28 @@ require_command() {
     fi
 }
 
+install_quota_tools() {
+    if command -v quotacheck >/dev/null 2>&1 &&
+        command -v quotaon >/dev/null 2>&1 &&
+        command -v setquota >/dev/null 2>&1 &&
+        command -v repquota >/dev/null 2>&1; then
+        echo "Cong cu quota da duoc cai dat."
+        return
+    fi
+
+    if command -v apt-get >/dev/null 2>&1; then
+        apt-get update
+        DEBIAN_FRONTEND=noninteractive apt-get install -y quota
+    elif command -v dnf >/dev/null 2>&1; then
+        dnf install -y quota
+    elif command -v yum >/dev/null 2>&1; then
+        yum install -y quota
+    else
+        echo "Thieu cong cu quota va khong tim thay trinh quan ly goi phu hop."
+        exit 1
+    fi
+}
+
 print_title() {
     printf '\n========== %s ==========\n' "$1"
 }
@@ -106,6 +128,7 @@ cau_3() {
 
 enable_quota_on_home() {
     print_title "Bat quota tren /home"
+    install_quota_tools
     require_command "quotacheck"
     require_command "quotaon"
     require_command "setquota"
