@@ -26,15 +26,18 @@
 Kiểm tra xem thư mục `/home` có phải là mount point của một partition riêng biệt hay không. Nếu không thì tạo một partition mới và mount nó vào thư mục `/home`.
 
 ```bash
-sudo mkdir -p /home_exam
-if findmnt -rn /home_exam >/dev/null 2>&1; then
-    findmnt /home_exam
+if findmnt -rn /home >/dev/null 2>&1; then
+    findmnt /home
 else
-    sudo dd if=/dev/zero of=/root/home_disk.img bs=1M count=100
+    sudo dd if=/dev/zero of=/root/home_disk.img bs=1M count=0 seek=5120
     sudo mkfs.ext4 -F /root/home_disk.img
-    sudo mount /root/home_disk.img /home_exam
-    echo "/root/home_disk.img /home_exam ext4 defaults,usrquota,grpquota 0 2" | sudo tee -a /etc/fstab
-    findmnt /home_exam
+    sudo mkdir -p /mnt/new_home
+    sudo mount /root/home_disk.img /mnt/new_home
+    sudo cp -a /home/. /mnt/new_home/ 2>/dev/null || true
+    sudo umount /mnt/new_home
+    sudo mount /root/home_disk.img /home
+    echo "/root/home_disk.img /home ext4 defaults,usrquota,grpquota 0 2" | sudo tee -a /etc/fstab
+    findmnt /home
 fi
 ```
 

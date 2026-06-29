@@ -31,7 +31,7 @@ title "Cau 1: Kiem tra /home"
 if findmnt -rn "${HOME_MOUNT}" >/dev/null 2>&1; then
     findmnt "${HOME_MOUNT}"
 else
-    dd if=/dev/zero of=/root/home_disk.img bs=1M count=100
+    dd if=/dev/zero of=/root/home_disk.img bs=1M count=0 seek=5120
     mkfs.ext4 -F /root/home_disk.img
     mkdir -p /mnt/new_home
     mount /root/home_disk.img /mnt/new_home
