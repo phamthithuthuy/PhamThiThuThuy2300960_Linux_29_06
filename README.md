@@ -25,17 +25,8 @@
 
 Kiểm tra xem thư mục `/home` có phải là mount point của một partition riêng biệt hay không. Nếu không thì tạo một partition mới và mount nó vào thư mục `/home`.
 
-```bash
-if findmnt -rn /home >/dev/null 2>&1; then
-    findmnt /home
-else
-    sudo dd if=/dev/zero of=/root/home_disk.img bs=1M count=100
-    sudo mkfs.ext4 -F /root/home_disk.img
-    sudo mount /root/home_disk.img /home
-    echo "/root/home_disk.img /home ext4 defaults,usrquota,grpquota 0 2" | sudo tee -a /etc/fstab
-    findmnt /home
-fi
-```
+![Câu 1](assets/cau1.png)
+
 
 ## Câu 2 (1 điểm)
 
@@ -57,22 +48,8 @@ Trong nhóm `admin` tạo các người dùng:
 
 Các tài khoản đều có mật khẩu là `123456`.
 
-```bash
-sudo groupadd -f hocvien
-sudo groupadd -f admin
+![Câu 2](assets/cau2.png)
 
-sudo useradd -m -g hocvien hv1 || true
-sudo useradd -m -g hocvien hv2 || true
-sudo useradd -m -g hocvien hv3 || true
-sudo useradd -m -g admin admin1 || true
-sudo useradd -m -g admin admin2 || true
-
-echo "hv1:123456" | sudo chpasswd
-echo "hv2:123456" | sudo chpasswd
-echo "hv3:123456" | sudo chpasswd
-echo "admin1:123456" | sudo chpasswd
-echo "admin2:123456" | sudo chpasswd
-```
 
 ## Câu 3 (1 điểm)
 
@@ -87,68 +64,43 @@ thành:
 
 để phân biệt với các người dùng khác.
 
-```bash
-sudo usermod -c "Người dùng quản trị hệ thống" admin1
-sudo usermod -c "Người dùng quản trị hệ thống" admin2
-getent passwd admin1 admin2
-```
+![Câu 3](assets/cau3.png)
+
 
 ## Câu 4 (1 điểm)
 
 Cấu hình quota cho thư mục `/home` và cấp quota sao cho mỗi người dùng trong nhóm `hocvien` có dung lượng giới hạn là **10 KB**.
 
-```bash
-sudo apt-get update && sudo apt-get install -y quota
-sudo mount -o remount,usrquota,grpquota /home
-sudo quotacheck -cum /home || true
-sudo quotacheck -cgm /home || true
-sudo quotaon /home || true
-sudo setquota -u hv1 10 12 0 0 /home
-sudo setquota -u hv2 10 12 0 0 /home
-sudo setquota -u hv3 10 12 0 0 /home
-sudo repquota /home || true
-```
+![Câu 4](assets/cau4.png)
+
 
 ## Câu 5 (1 điểm)
 
 Cấp quota sao cho mỗi người dùng trong nhóm `admin` có dung lượng giới hạn là **20 KB**.
 
-```bash
-sudo setquota -u admin1 20 22 0 0 /home
-sudo setquota -u admin2 20 22 0 0 /home
-sudo repquota /home || true
-```
+![Câu 5](assets/cau5.png)
+
 
 ## Câu 6 (1 điểm)
 
 Cấu hình quota cho thư mục `/home` sao cho khi người dùng sử dụng vượt quá dung lượng giới hạn thì gửi một thông báo và sau **một tuần** thì hủy dữ liệu.
 
-```bash
-sudo setquota -u -t 604800 604800 /home || true
-sudo repquota /home || true
-```
+![Câu 6](assets/cau6.png)
+
 
 ## Câu 7 (1 điểm)
 
 Đăng nhập vào người dùng `hv1` và lưu dữ liệu vào thư mục home của mình vượt quá **10 KB**. Quan sát điều gì xảy ra.
 
-```bash
-sudo mkdir -p /home/hv1
-sudo chown hv1:hocvien /home/hv1
-sudo su - hv1 -c "dd if=/dev/zero of=/home/hv1/test_quota.dat bs=1K count=11" || true
-sudo quota -u hv1 || true
-```
+![Câu 7](assets/cau7.png)
+
 
 ## Câu 8 (1 điểm)
 
 Đăng nhập vào người dùng `admin1` và lưu dữ liệu vào thư mục home của mình vượt quá **20 KB**. Quan sát điều gì xảy ra.
 
-```bash
-sudo mkdir -p /home/admin1
-sudo chown admin1:admin /home/admin1
-sudo su - admin1 -c "dd if=/dev/zero of=/home/admin1/test_quota.dat bs=1K count=21" || true
-sudo quota -u admin1 || true
-```
+![Câu 8](assets/cau8.png)
+
 
 ## Câu 9 (1 điểm)
 
@@ -160,20 +112,12 @@ Thiết lập quyền mặc định như sau:
 
 Sau đó tạo tập tin, thư mục và so sánh quyền.
 
-```bash
-umask 027
-sudo touch /home/file_umask
-sudo mkdir -p /home/dir_umask
-sudo ls -l /home/file_umask
-sudo ls -ld /home/dir_umask
-```
+![Câu 9](assets/cau9.png)
+
 
 ## Câu 10 (1 điểm)
 
 Theo dõi và thống kê sử dụng tài nguyên hệ thống của User.
 
-```bash
-ps -eo user,pid,%cpu,%mem,comm --sort=user | head -50
-sudo du -sh /home/* 2>/dev/null || true
-sudo repquota /home || true
-```
+![Câu 10](assets/cau10.png)
+
