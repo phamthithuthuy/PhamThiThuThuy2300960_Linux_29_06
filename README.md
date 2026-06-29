@@ -21,6 +21,15 @@
     └── run_tests.sh
 ```
 
+## Hướng dẫn chạy nhanh (Copy & Paste)
+
+*(Lưu ý: Thay `/dev/sdb1` bằng phân vùng đĩa trống thực tế trên máy bạn để tạo `/home` riêng)*
+
+```bash
+chmod +x scripts/de_thuy.sh
+sudo HOME_DEVICE=/dev/sdb1 bash scripts/de_thuy.sh
+```
+
 ## Câu 1 (1 điểm)
 
 Kiểm tra xem thư mục `/home` có phải là mount point của một partition riêng biệt hay không. Nếu không thì tạo một partition mới và mount nó vào thư mục `/home`.
