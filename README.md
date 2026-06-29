@@ -25,7 +25,7 @@
 
 Kiểm tra xem thư mục `/home` có phải là mount point của một partition riêng biệt hay không. Nếu không thì tạo một partition mới và mount nó vào thư mục `/home`.
 
-![Câu 1](assets/cau1.png)
+![Câu 1](assets/cau1.jpg)
 
 
 ## Câu 2 (1 điểm)
@@ -48,7 +48,7 @@ Trong nhóm `admin` tạo các người dùng:
 
 Các tài khoản đều có mật khẩu là `123456`.
 
-![Câu 2](assets/cau2.png)
+![Câu 2](assets/cau2.jpg)
 
 
 ## Câu 3 (1 điểm)
@@ -64,42 +64,44 @@ thành:
 
 để phân biệt với các người dùng khác.
 
-![Câu 3](assets/cau3.png)
+![Câu 3](assets/cau3.jpg)
 
 
 ## Câu 4 (1 điểm)
 
 Cấu hình quota cho thư mục `/home` và cấp quota sao cho mỗi người dùng trong nhóm `hocvien` có dung lượng giới hạn là **10 KB**.
 
-![Câu 4](assets/cau4.png)
+![Câu 4](assets/cau4_1.jpg)
+
+![Câu 4 output](assets/cau4_2.jpg)
 
 
 ## Câu 5 (1 điểm)
 
 Cấp quota sao cho mỗi người dùng trong nhóm `admin` có dung lượng giới hạn là **20 KB**.
 
-![Câu 5](assets/cau5.png)
+![Câu 5](assets/cau5.jpg)
 
 
 ## Câu 6 (1 điểm)
 
 Cấu hình quota cho thư mục `/home` sao cho khi người dùng sử dụng vượt quá dung lượng giới hạn thì gửi một thông báo và sau **một tuần** thì hủy dữ liệu.
 
-![Câu 6](assets/cau6.png)
+![Câu 6](assets/cau6.jpg)
 
 
 ## Câu 7 (1 điểm)
 
 Đăng nhập vào người dùng `hv1` và lưu dữ liệu vào thư mục home của mình vượt quá **10 KB**. Quan sát điều gì xảy ra.
 
-![Câu 7](assets/cau7.png)
+![Câu 7](assets/cau7.jpg)
 
 
 ## Câu 8 (1 điểm)
 
 Đăng nhập vào người dùng `admin1` và lưu dữ liệu vào thư mục home của mình vượt quá **20 KB**. Quan sát điều gì xảy ra.
 
-![Câu 8](assets/cau8.png)
+![Câu 8](assets/cau8.jpg)
 
 
 ## Câu 9 (1 điểm)
@@ -112,12 +114,14 @@ Thiết lập quyền mặc định như sau:
 
 Sau đó tạo tập tin, thư mục và so sánh quyền.
 
-![Câu 9](assets/cau9.png)
+![Câu 9](assets/cau9.jpg)
 
 
 ## Câu 10 (1 điểm)
 
 Theo dõi và thống kê sử dụng tài nguyên hệ thống của User.
 
-![Câu 10](assets/cau10.png)
+![Câu 10](assets/cau10_1.jpg)
+
+![Câu 10 output](assets/cau10_2.jpg)
 
