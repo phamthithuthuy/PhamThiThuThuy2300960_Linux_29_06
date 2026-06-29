@@ -31,15 +31,14 @@ title "Cau 1: Kiem tra /home"
 if findmnt -rn "${HOME_MOUNT}" >/dev/null 2>&1; then
     findmnt "${HOME_MOUNT}"
 else
-    if [ -z "${HOME_DEVICE}" ]; then
-        echo "/home chua la mount point rieng. Chay lai voi HOME_DEVICE=/dev/<phan-vung>."
-        exit 1
-    fi
-
-    mkfs.ext4 -F "${HOME_DEVICE}"
-    mkdir -p "${HOME_MOUNT}"
-    mount "${HOME_DEVICE}" "${HOME_MOUNT}"
-    echo "${HOME_DEVICE} ${HOME_MOUNT} ext4 defaults,usrquota,grpquota 0 2" >> /etc/fstab
+    dd if=/dev/zero of=/root/home_disk.img bs=1M count=100
+    mkfs.ext4 -F /root/home_disk.img
+    mkdir -p /mnt/new_home
+    mount /root/home_disk.img /mnt/new_home
+    cp -a /home/. /mnt/new_home/ 2>/dev/null || true
+    umount /mnt/new_home
+    mount /root/home_disk.img "${HOME_MOUNT}"
+    echo "/root/home_disk.img ${HOME_MOUNT} ext4 defaults,usrquota,grpquota 0 2" >> /etc/fstab
     findmnt "${HOME_MOUNT}"
 fi
 
