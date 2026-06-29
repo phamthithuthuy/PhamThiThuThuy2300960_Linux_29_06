@@ -1,8 +1,8 @@
 <div align="center">
 
-# Bài giữa kỳ Linux ngày 29/06
+# Bài cuối kỳ Linux ngày 29/06
 
-**Lời giải đề giữa kỳ của Thùy**
+**Lời giải đề cuối kỳ của Thùy**
 
 | Họ và tên | Mã sinh viên |
 | --- | --- |
@@ -30,7 +30,7 @@
 
 ![Sơ đồ xử lý Đề của Thùy](assets/diagram-de-thuy.png)
 
-## Nội dung bài giữa kỳ
+## Nội dung bài cuối kỳ
 
 Script `scripts/de_thuy.sh` thực hiện lần lượt 10 câu của đề:
 
@@ -60,7 +60,7 @@ chmod +x scripts/de_thuy.sh
 sudo bash scripts/de_thuy.sh
 ```
 
-Nếu cần tạo phân vùng mới cho `/home`, thay `/dev/sdb1` bằng phân vùng thực tế của máy giữa kỳ:
+Nếu cần tạo phân vùng mới cho `/home`, thay `/dev/sdb1` bằng phân vùng thực tế của máy cuối kỳ:
 
 ```bash
 sudo HOME_DEVICE=/dev/sdb1 CONFIRM_FORMAT_HOME_DEVICE=yes bash scripts/de_thuy.sh
